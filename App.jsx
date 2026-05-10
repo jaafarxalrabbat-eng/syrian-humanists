@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logoHeader from "./logo-Header.png";
 import logoFull from "./logo-full.png";
+import logoMark from "./logo-mark.png";
 
 const nav = [
   { label: "About", href: "#about" },
@@ -145,7 +146,12 @@ function ChevronIcon({ className = "" }) {
 function MenuIcon({ className = "" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path
+        d="M4 7h16M4 12h16M4 17h16"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -153,7 +159,12 @@ function MenuIcon({ className = "" }) {
 function XIcon({ className = "" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path
+        d="M6 6l12 12M18 6 6 18"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -226,11 +237,11 @@ function HeroLogoVisual() {
     <div className="relative mx-auto flex h-[360px] w-full max-w-[500px] items-center justify-center md:h-[470px]">
       <div className="absolute inset-4 rounded-full bg-gradient-to-br from-[#7CCBAE]/25 via-white to-[#F1912E]/10 blur-2xl" />
 
-      <div className="relative w-full rounded-[3rem] border border-[#195C85]/10 bg-white/90 p-8 shadow-2xl shadow-[#195C85]/15 backdrop-blur md:p-10">
+      <div className="relative w-full max-w-[420px] rounded-[3rem] border border-[#195C85]/10 bg-white/90 p-8 shadow-2xl shadow-[#195C85]/15 backdrop-blur md:p-10">
         <img
-          src={logoHeader}
-          alt="Syrian Humanists logo"
-          className="mx-auto h-auto w-full max-w-[340px] object-contain md:max-w-[420px]"
+          src={logoMark}
+          alt="Syrian Humanists symbol"
+          className="mx-auto h-auto w-full max-w-[300px] object-contain md:max-w-[340px]"
         />
 
         <div className="mx-auto mt-8 max-w-[280px] rounded-3xl border border-[#25A77A]/20 bg-[#F8FAF7] px-5 py-4 text-center">
