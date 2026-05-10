@@ -570,7 +570,7 @@ function FullLogo({ src, alt }) {
 
 function HeroLogoVisual({ copy }) {
   return (
-    <div className="relative mx-auto flex h-[360px] w-full max-w-[500px] items-center justify-center md:h-[470px]">
+  <div className="relative mx-auto mt-10 flex h-[360px] w-full max-w-[500px] items-center justify-center md:h-[470px] lg:mt-0">
       <div className="absolute inset-4 rounded-full bg-gradient-to-br from-[#7CCBAE]/25 via-white to-[#F1912E]/10 blur-2xl" />
 
       <div className="relative w-full max-w-[420px] rounded-[3rem] border border-[#195C85]/10 bg-white/90 p-8 shadow-2xl shadow-[#195C85]/15 backdrop-blur md:p-10">
