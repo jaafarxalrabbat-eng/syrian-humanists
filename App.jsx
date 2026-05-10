@@ -697,7 +697,21 @@ export default function SyrianHumanistsWebsite() {
       : "text-4xl leading-[1.08] sm:text-5xl lg:text-6xl"
   }`}
 >
-  {copy.heroTitle}
+  {isAr ? (
+    <>
+      صوت هادئ من أجل{" "}
+      <span className="text-[#25A77A]">الكرامة</span>
+      ، وحرية الضمير، و
+      <span className="text-[#F1912E]">التضامن</span> الإنساني.
+    </>
+  ) : (
+    <>
+      A calm voice for{" "}
+      <span className="text-[#25A77A]">dignity</span>
+      , conscience, and human{" "}
+      <span className="text-[#F1912E]">solidarity.</span>
+    </>
+  )}
 </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-[#14232B]/72 sm:text-xl">
                 {copy.heroText}
