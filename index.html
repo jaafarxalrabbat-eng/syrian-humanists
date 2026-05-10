@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
 
+    <!-- Browser icon / favicon -->
+    <link rel="icon" type="image/png" href="./logo-mark.png" />
+
+    <!-- iPhone / iPad home screen icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+
+    <!-- Preload social image so Vite includes it in the build -->
+    <link rel="preload" as="image" href="./og-image.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -10,11 +20,34 @@
       rel="stylesheet"
     />
 
+    <!-- Basic SEO -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Syrian Humanists is an independent initiative in development for dignity, freedom of conscience, critical thinking, and human solidarity."
     />
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://syrianhumanists.org/" />
+    <meta property="og:title" content="Syrian Humanists | الإنسانيون السوريون" />
+    <meta
+      property="og:description"
+      content="An independent initiative in development for dignity, freedom of conscience, critical thinking, and human solidarity."
+    />
+    <meta property="og:image" content="https://syrianhumanists.org/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X Preview -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Syrian Humanists | الإنسانيون السوريون" />
+    <meta
+      name="twitter:description"
+      content="An independent initiative in development for dignity, freedom of conscience, critical thinking, and human solidarity."
+    />
+    <meta name="twitter:image" content="https://syrianhumanists.org/og-image.png" />
+
     <title>Syrian Humanists</title>
   </head>
 
