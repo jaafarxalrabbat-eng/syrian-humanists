@@ -691,7 +691,7 @@ export default function SyrianHumanistsWebsite() {
             <div className={align}>
               <SectionLabel>{copy.badge}</SectionLabel>
    <h1
-  className={`max-w-4xl font-extrabold tracking-tight text-[#14232B] ${
+  className={`max-w-4xl font-extrabold tracking-tight text-[#195C85] ${
     isAr
       ? "text-4xl leading-[1.18] sm:text-5xl lg:text-6xl"
       : "text-4xl leading-[1.08] sm:text-5xl lg:text-6xl"
