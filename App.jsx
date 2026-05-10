@@ -453,6 +453,24 @@ function ThemeToggle({ isDark, setIsDark, isAr }) {
   );
 }
 
+function ThemeIconButton({ isDark, setIsDark, isAr }) {
+  return (
+    <button
+      type="button"
+      onClick={() => setIsDark(!isDark)}
+      aria-label={isAr ? "تبديل الوضع الداكن" : "Toggle dark mode"}
+      className={cx(
+        "flex h-11 w-11 items-center justify-center rounded-full border transition hover:-translate-y-0.5 lg:hidden",
+        isDark
+          ? "border-[#7CCBAE]/15 bg-[#102129] text-[#7CCBAE]"
+          : "border-[#195C85]/10 bg-white text-[#195C85]"
+      )}
+    >
+      {isDark ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+    </button>
+  );
+}
+
 function AmbientAura({ isAr = false, isDark = false }) {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -515,10 +533,10 @@ function MouseAura({ isDark }) {
   const dotRef = useRef(null);
 
   useEffect(() => {
-    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canUsePointer = window.matchMedia("(pointer: fine)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (!hasFinePointer || prefersReducedMotion) return;
+    if (!canUsePointer || reducedMotion) return;
 
     const aura = auraRef.current;
     const dot = dotRef.current;
@@ -541,7 +559,7 @@ function MouseAura({ isDark }) {
       dot.style.opacity = "0";
     };
 
-    const handleMove = (event) => {
+    const handlePointerMove = (event) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
       show();
@@ -557,13 +575,16 @@ function MouseAura({ isDark }) {
       frameId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener("mousemove", handleMove);
-    window.addEventListener("mouseleave", hide);
+    document.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointerleave", hide);
+    window.addEventListener("blur", hide);
+
     animate();
 
     return () => {
-      window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("mouseleave", hide);
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerleave", hide);
+      window.removeEventListener("blur", hide);
       cancelAnimationFrame(frameId);
     };
   }, []);
@@ -641,7 +662,11 @@ function LanguageToggle({ lang, setLang, isDark }) {
         type="button"
         onClick={() => setLang("en")}
         className={`rounded-full px-3 py-2 transition ${
-          lang === "en" ? "bg-[#195C85] text-white" : isDark ? "text-[#EAF2F5] hover:bg-[#17313B]" : "text-[#195C85] hover:bg-[#F8FAF7]"
+          lang === "en"
+            ? "bg-[#195C85] text-white"
+            : isDark
+            ? "text-[#EAF2F5] hover:bg-[#17313B]"
+            : "text-[#195C85] hover:bg-[#F8FAF7]"
         }`}
       >
         {isAr ? "الإنجليزية" : "EN"}
@@ -650,7 +675,11 @@ function LanguageToggle({ lang, setLang, isDark }) {
         type="button"
         onClick={() => setLang("ar")}
         className={`rounded-full px-3 py-2 transition ${
-          lang === "ar" ? "bg-[#195C85] text-white" : isDark ? "text-[#EAF2F5] hover:bg-[#17313B]" : "text-[#195C85] hover:bg-[#F8FAF7]"
+          lang === "ar"
+            ? "bg-[#195C85] text-white"
+            : isDark
+            ? "text-[#EAF2F5] hover:bg-[#17313B]"
+            : "text-[#195C85] hover:bg-[#F8FAF7]"
         }`}
       >
         {isAr ? "العربية" : "AR"}
@@ -678,7 +707,7 @@ function HeroLogoVisual({ copy, isDark, isAr }) {
     <div
       className={cx(
         "relative mx-auto mt-10 flex h-[360px] w-full max-w-[500px] items-center justify-center md:h-[470px] lg:mt-0",
-        isAr ? "lg:translate-x-10" : "lg:-translate-x-10"
+        isAr ? "lg:-translate-x-10" : "lg:translate-x-10"
       )}
     >
       <div className="absolute inset-4 rounded-full bg-gradient-to-br from-[#7CCBAE]/25 via-white to-[#F1912E]/10 blur-2xl" />
@@ -765,9 +794,7 @@ function HeroTitle({ isAr, isDark }) {
         </>
       ) : (
         <>
-          A calm voice for{" "}
-          <span className="text-[#25A77A]">dignity</span>
-          , conscience, and human{" "}
+          A calm voice for <span className="text-[#25A77A]">dignity</span>, conscience, and human{" "}
           <span className="text-[#F1912E]">solidarity.</span>
         </>
       )}
@@ -809,7 +836,7 @@ export default function SyrianHumanistsWebsite() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-          <a href="#top" aria-label={copy.logoAlt}>
+          <a href="#top" aria-label={copy.logoAlt} className="shrink-0">
             <Logo src={headerLogo} alt={copy.logoAlt} />
           </a>
 
@@ -836,17 +863,21 @@ export default function SyrianHumanistsWebsite() {
             </Button>
           </div>
 
-          <button
-            className={cx(
-              "flex h-11 w-11 items-center justify-center rounded-full border lg:hidden",
-              isDark ? "border-[#7CCBAE]/15 bg-[#102129] text-[#7CCBAE]" : "border-[#195C85]/10 bg-white text-[#195C85]"
-            )}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={isAr ? "فتح القائمة" : "Open menu"}
-            type="button"
-          >
-            {menuOpen ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <ThemeIconButton isDark={isDark} setIsDark={setIsDark} isAr={isAr} />
+
+            <button
+              className={cx(
+                "flex h-11 w-11 items-center justify-center rounded-full border",
+                isDark ? "border-[#7CCBAE]/15 bg-[#102129] text-[#7CCBAE]" : "border-[#195C85]/10 bg-white text-[#195C85]"
+              )}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={isAr ? "فتح القائمة" : "Open menu"}
+              type="button"
+            >
+              {menuOpen ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {menuOpen && (
@@ -864,7 +895,7 @@ export default function SyrianHumanistsWebsite() {
                   : "border-[#195C85]/10 bg-white/90 shadow-[#195C85]/10"
               )}
             >
-              <div className={`flex flex-col gap-2 ${isAr ? "text-right" : "text-left"}`}>
+              <div className={`flex flex-col gap-2 ${isAr ? "items-stretch text-right" : "items-stretch text-left"}`}>
                 {copy.nav.map(([label, href]) => (
                   <a
                     key={href}
@@ -872,7 +903,7 @@ export default function SyrianHumanistsWebsite() {
                     onClick={() => setMenuOpen(false)}
                     className={cx(
                       "group flex w-full items-center rounded-2xl px-4 py-3 text-lg font-bold transition",
-                      isAr ? "justify-end" : "justify-start",
+                      isAr ? "justify-start text-right" : "justify-start text-left",
                       isDark
                         ? "text-[#EAF2F5]/78 hover:bg-[#17313B] hover:text-[#7CCBAE]"
                         : "text-[#14232B]/75 hover:bg-[#F8FAF7] hover:text-[#195C85]"
@@ -884,7 +915,7 @@ export default function SyrianHumanistsWebsite() {
 
                 <div className={cx("my-3 h-px w-full", isDark ? "bg-[#7CCBAE]/10" : "bg-[#195C85]/10")} />
 
-                <div className={`flex w-full flex-wrap gap-3 ${isAr ? "justify-end" : "justify-start"}`}>
+                <div className="flex w-full flex-wrap justify-start gap-3">
                   <ThemeToggle isDark={isDark} setIsDark={setIsDark} isAr={isAr} />
                   <LanguageToggle lang={lang} setLang={setLang} isDark={isDark} />
                 </div>
