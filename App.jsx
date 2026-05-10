@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logoHeader from "./logo-header.svg";
 import logoFull from "./logo-full.svg";
+
 const nav = [
   { label: "About", href: "#about" },
   { label: "Vision", href: "#vision" },
@@ -128,7 +129,7 @@ function runSelfTests() {
     ...faqs.flatMap((item) => [item.q, item.a]),
   ].join(" ");
 
-  console.assert(!/[\u0600-\u06FF]/.test(textContent), "Expected no Arabic-script text in website copy data.");
+  console.assert(!/[؀-ۿ]/.test(textContent), "Expected no Arabic-script text in website copy data.");
 }
 
 runSelfTests();
@@ -195,6 +196,16 @@ function LogoMark({ className = "" }) {
   );
 }
 
+function FullLogo({ className = "" }) {
+  return (
+    <img
+      src={logoFull}
+      alt="Syrian Humanists full logo"
+      className={`h-20 w-auto object-contain ${className}`}
+    />
+  );
+}
+
 function SectionLabel({ children }) {
   return (
     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#7CCBAE]/40 bg-white/80 px-4 py-2 text-sm font-semibold text-[#195C85] shadow-sm">
@@ -220,25 +231,24 @@ function Button({ children, variant = "primary", href = "#contact" }) {
 
 function AbstractHeroVisual() {
   return (
-    <div className="relative mx-auto flex h-[360px] w-full max-w-[420px] items-center justify-center md:h-[470px]">
+    <div className="relative mx-auto flex h-[360px] w-full max-w-[460px] items-center justify-center md:h-[470px]">
       <div className="absolute inset-4 rounded-full bg-gradient-to-br from-[#7CCBAE]/25 via-white to-[#F1912E]/10 blur-2xl" />
-      <div className="relative h-[290px] w-[290px] rounded-full border-[10px] border-[#195C85] bg-white shadow-2xl shadow-[#195C85]/15 md:h-[360px] md:w-[360px]">
-        <div className="absolute left-8 top-12 h-20 w-28 rounded-[50%] bg-[#7CCBAE] opacity-90" />
-        <div className="absolute bottom-16 left-6 h-28 w-24 rounded-[48%] bg-[#25A77A] opacity-90" />
-        <div className="absolute right-8 top-24 h-24 w-28 rounded-[48%] bg-[#7CCBAE] opacity-90" />
-        <div className="absolute bottom-16 right-10 h-28 w-20 rounded-[48%] bg-[#25A77A] opacity-90" />
 
-        <div className="absolute left-[132px] top-[105px] h-12 w-12 rounded-full bg-[#195C85] md:left-[166px] md:top-[132px] md:h-14 md:w-14" />
-        <div className="absolute left-[132px] top-[158px] h-28 w-14 rounded-t-full bg-[#195C85] md:left-[168px] md:top-[190px] md:h-36 md:w-16" />
-        <div className="absolute left-[88px] top-[166px] h-8 w-80 origin-left rotate-[-35deg] rounded-full bg-[#195C85] md:left-[116px] md:top-[202px]" />
-        <div className="absolute left-[170px] top-[168px] h-8 w-24 origin-left rotate-[-64deg] rounded-full bg-[#195C85] md:left-[210px] md:top-[202px] md:w-32" />
-        <div className="absolute right-10 top-16 h-24 w-4 rotate-[20deg] rounded-full bg-[#F1912E]" />
-        <div className="absolute right-0 top-12 h-7 w-16 rotate-[-24deg] rounded-full bg-[#F1912E]" />
-        <div className="absolute right-5 top-4 h-7 w-14 rotate-[-58deg] rounded-full bg-[#F1912E]" />
-      </div>
-      <div className="absolute bottom-8 left-2 rounded-3xl border border-[#25A77A]/20 bg-white/90 px-5 py-4 shadow-xl backdrop-blur">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#25A77A]">In development</p>
-        <p className="mt-1 text-sm font-bold text-[#14232B]">Careful before scale</p>
+      <div className="relative rounded-[3rem] border border-[#195C85]/10 bg-white/85 p-8 shadow-2xl shadow-[#195C85]/15 backdrop-blur md:p-10">
+        <img
+          src={logoHeader}
+          alt="Syrian Humanists logo"
+          className="mx-auto h-56 w-auto object-contain sm:h-64 md:h-80"
+        />
+
+        <div className="mt-6 rounded-3xl border border-[#25A77A]/20 bg-[#F8FAF7] px-5 py-4 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#25A77A]">
+            In development
+          </p>
+          <p className="mt-1 text-sm font-bold text-[#14232B]">
+            Careful before scale
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -534,7 +544,7 @@ export default function SyrianHumanistsWebsite() {
       <footer className="border-t border-[#195C85]/10 bg-white px-5 py-10 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <LogoMark />
+            <FullLogo />
             <p className="mt-4 max-w-xl text-sm leading-7 text-[#14232B]/65">
               Syrian Humanists — dignity, conscience, solidarity. An independent initiative in development.
             </p>
