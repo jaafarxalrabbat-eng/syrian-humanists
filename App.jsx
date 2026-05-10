@@ -616,12 +616,17 @@ export default function SyrianHumanistsWebsite() {
   const footerLogo = isAr ? logoFullAr : logoFull;
   const align = isAr ? "text-right" : "text-left";
 
-  return (
-    <div
-      dir={isAr ? "rtl" : "ltr"}
-      lang={lang}
-      className="min-h-screen scroll-smooth bg-[#F8FAF7] font-sans text-[#14232B]"
-    >
+ return (
+  <div
+    dir={isAr ? "rtl" : "ltr"}
+    lang={lang}
+    style={{
+      fontFamily: isAr
+        ? '"IBM Plex Sans Arabic", sans-serif'
+        : '"Manrope", sans-serif',
+    }}
+    className="min-h-screen scroll-smooth bg-[#F8FAF7] text-[#14232B]"
+  >
       <header className="sticky top-0 z-50 border-b border-[#195C85]/10 bg-[#F8FAF7]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
           <a href="#top" aria-label={copy.logoAlt}>
