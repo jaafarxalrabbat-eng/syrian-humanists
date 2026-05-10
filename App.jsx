@@ -569,7 +569,7 @@ function MouseAura({ isDark }) {
       auraX += (mouseX - auraX) * 0.12;
       auraY += (mouseY - auraY) * 0.12;
 
-      aura.style.transform = `translate3d(${auraX - 150}px, ${auraY - 150}px, 0)`;
+      aura.style.transform = `translate3d(${auraX - 130}px, ${auraY - 130}px, 0)`;
       dot.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
 
       frameId = requestAnimationFrame(animate);
@@ -597,11 +597,11 @@ function MouseAura({ isDark }) {
     >
       <div
         ref={auraRef}
-        className="absolute h-[300px] w-[300px] rounded-full opacity-0 blur-3xl transition-opacity duration-500"
+        className="absolute h-[260px] w-[260px] rounded-full opacity-0 blur-2xl transition-opacity duration-500"
         style={{
           background: isDark
-            ? "radial-gradient(circle, rgba(241,145,46,0.14) 0%, rgba(37,167,122,0.075) 36%, rgba(124,203,174,0.065) 58%, rgba(255,255,255,0) 74%)"
-            : "radial-gradient(circle, rgba(241,145,46,0.10) 0%, rgba(37,167,122,0.10) 34%, rgba(124,203,174,0.075) 56%, rgba(255,255,255,0) 74%)",
+            ? "radial-gradient(circle, rgba(241,145,46,0.14) 0%, rgba(37,167,122,0.085) 34%, rgba(124,203,174,0.07) 56%, rgba(255,255,255,0) 74%)"
+            : "radial-gradient(circle, rgba(241,145,46,0.12) 0%, rgba(37,167,122,0.16) 32%, rgba(25,92,133,0.08) 56%, rgba(255,255,255,0) 74%)",
           transform: "translate3d(-999px, -999px, 0)",
         }}
       />
@@ -702,15 +702,12 @@ function Logo({ src, alt }) {
   );
 }
 
-function FullLogo({ src, alt, isAr = false }) {
+function FullLogo({ src, alt }) {
   return (
     <img
       src={src}
       alt={alt}
-      className={cx(
-        "block h-auto w-full max-w-[320px] object-contain",
-        isAr ? "self-end object-right" : "self-start object-left"
-      )}
+      className="block h-auto w-full object-contain"
     />
   );
 }
@@ -769,17 +766,19 @@ function Card({ icon, title, text, isDark }) {
     >
       <div
         className={cx(
-          "mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border text-2xl ring-1 transition-colors",
+          "mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border text-2xl ring-1 transition-all duration-300",
           isDark
-            ? "border-[#F1912E]/20 bg-[#241A10] ring-[#F1912E]/10 group-hover:bg-[#2A1E12]"
-            : "border-[#F1912E]/20 bg-[#FFF7EF] ring-[#F1912E]/10 group-hover:bg-white"
+            ? "border-[#7CCBAE]/20 bg-[#0E2730] ring-[#25A77A]/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_24px_rgba(37,167,122,0.08)] group-hover:border-[#F1912E]/25"
+            : "border-[#7CCBAE]/30 bg-[#F4FBF7] ring-[#25A77A]/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_10px_24px_rgba(25,92,133,0.06)] group-hover:border-[#F1912E]/25"
         )}
       >
         <span aria-hidden="true">{icon}</span>
       </div>
+
       <h3 className={cx("text-lg font-extrabold", isDark ? "text-[#EAF2F5]" : "text-[#14232B]")}>
         {title}
       </h3>
+
       <p className={cx("mt-3 leading-7", isDark ? "text-[#EAF2F5]/68" : "text-[#14232B]/70")}>
         {text}
       </p>
@@ -1155,7 +1154,7 @@ export default function SyrianHumanistsWebsite() {
                 isDark ? "border-[#7CCBAE]/10 bg-[#102129]/90" : "border-[#195C85]/10 bg-white"
               )}
             >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F1912E]/20 bg-[#FFF7EF] text-2xl">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#7CCBAE]/30 bg-[#F4FBF7] text-2xl">
                 🔐
               </div>
               <h2 className="text-3xl font-bold leading-tight text-[#195C85] md:text-4xl">
@@ -1172,7 +1171,7 @@ export default function SyrianHumanistsWebsite() {
                 isDark ? "border-[#7CCBAE]/10 bg-[#102129]/90" : "border-[#25A77A]/20 bg-[#F8FAF7]"
               )}
             >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F1912E]/20 bg-[#FFF7EF] text-2xl">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#7CCBAE]/30 bg-[#F4FBF7] text-2xl">
                 🌿
               </div>
               <h2 className="text-3xl font-bold leading-tight text-[#195C85] md:text-4xl">
@@ -1287,21 +1286,23 @@ export default function SyrianHumanistsWebsite() {
         >
           <div
             className={cx(
-              "flex w-full max-w-xl flex-col",
+              "flex w-full flex-col",
               isAr ? "items-end text-right" : "items-start text-left"
             )}
           >
-            <FullLogo src={footerLogo} alt={copy.logoAlt} isAr={isAr} />
+            <div className="w-[320px] max-w-full">
+              <FullLogo src={footerLogo} alt={copy.logoAlt} />
 
-            <p
-              className={cx(
-                "mt-4 max-w-xl whitespace-pre-line text-sm leading-7",
-                isAr ? "text-right" : "text-left",
-                isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
-              )}
-            >
-              {copy.footerText}
-            </p>
+              <p
+                className={cx(
+                  "mt-4 w-full whitespace-pre-line text-sm leading-7",
+                  isAr ? "text-right" : "text-left",
+                  isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
+                )}
+              >
+                {copy.footerText}
+              </p>
+            </div>
           </div>
 
           <div
