@@ -600,8 +600,8 @@ function MouseAura({ isDark }) {
         className="absolute h-[300px] w-[300px] rounded-full opacity-0 blur-3xl transition-opacity duration-500"
         style={{
           background: isDark
-            ? "radial-gradient(circle, rgba(241,145,46,0.16) 0%, rgba(37,167,122,0.055) 36%, rgba(124,203,174,0.055) 58%, rgba(255,255,255,0) 74%)"
-            : "radial-gradient(circle, rgba(241,145,46,0.13) 0%, rgba(37,167,122,0.045) 36%, rgba(25,92,133,0.055) 58%, rgba(255,255,255,0) 74%)",
+            ? "radial-gradient(circle, rgba(241,145,46,0.14) 0%, rgba(37,167,122,0.075) 36%, rgba(124,203,174,0.065) 58%, rgba(255,255,255,0) 74%)"
+            : "radial-gradient(circle, rgba(241,145,46,0.10) 0%, rgba(37,167,122,0.10) 34%, rgba(124,203,174,0.075) 56%, rgba(255,255,255,0) 74%)",
           transform: "translate3d(-999px, -999px, 0)",
         }}
       />
@@ -702,8 +702,17 @@ function Logo({ src, alt }) {
   );
 }
 
-function FullLogo({ src, alt }) {
-  return <img src={src} alt={alt} className="h-auto w-full max-w-[320px] object-contain" />;
+function FullLogo({ src, alt, isAr = false }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={cx(
+        "block h-auto w-full max-w-[320px] object-contain",
+        isAr ? "self-end object-right" : "self-start object-left"
+      )}
+    />
+  );
 }
 
 function HeroLogoVisual({ copy, isDark, isAr }) {
@@ -1278,11 +1287,11 @@ export default function SyrianHumanistsWebsite() {
         >
           <div
             className={cx(
-              "flex max-w-xl flex-col",
-              isAr ? "items-end pr-4 md:pr-0" : "items-start pl-4 md:pl-0"
+              "flex w-full max-w-xl flex-col",
+              isAr ? "items-end text-right" : "items-start text-left"
             )}
           >
-            <FullLogo src={footerLogo} alt={copy.logoAlt} />
+            <FullLogo src={footerLogo} alt={copy.logoAlt} isAr={isAr} />
 
             <p
               className={cx(
