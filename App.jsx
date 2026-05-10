@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import logoHeader from "./logo-header.svg";
-import logoFull from "./logo-full.svg.svg";
+import logoHeader from "./logo-header.png";
+import logoFull from "./logo-full.png";
 
 const nav = [
   { label: "About", href: "#about" },
