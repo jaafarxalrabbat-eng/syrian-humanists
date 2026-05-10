@@ -190,7 +190,7 @@ const content = {
       ["من نحن", "#about"],
       ["الرؤية", "#vision"],
       ["القيم", "#values"],
-      ["المشروع", "#building"],
+      ["المبادرة", "#building"],
       ["أسئلة", "#faq"],
     ],
     cta: "ابدأ حواراً",
@@ -575,7 +575,7 @@ function MouseAura({ isDark }) {
       frameId = requestAnimationFrame(animate);
     };
 
-    document.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointermove", handlePointerMove, { passive: true });
     document.addEventListener("pointerleave", hide);
     window.addEventListener("blur", hide);
 
@@ -590,21 +590,25 @@ function MouseAura({ isDark }) {
   }, []);
 
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[45] hidden overflow-hidden lg:block">
+    <div
+      aria-hidden="true"
+      dir="ltr"
+      className="pointer-events-none fixed inset-0 z-[60] hidden overflow-hidden lg:block"
+    >
       <div
         ref={auraRef}
         className="absolute h-[300px] w-[300px] rounded-full opacity-0 blur-3xl transition-opacity duration-500"
         style={{
           background: isDark
-            ? "radial-gradient(circle, rgba(241,145,46,0.18) 0%, rgba(37,167,122,0.12) 36%, rgba(124,203,174,0.10) 58%, rgba(255,255,255,0) 72%)"
-            : "radial-gradient(circle, rgba(241,145,46,0.16) 0%, rgba(37,167,122,0.10) 36%, rgba(25,92,133,0.08) 58%, rgba(255,255,255,0) 72%)",
+            ? "radial-gradient(circle, rgba(241,145,46,0.16) 0%, rgba(37,167,122,0.055) 36%, rgba(124,203,174,0.055) 58%, rgba(255,255,255,0) 74%)"
+            : "radial-gradient(circle, rgba(241,145,46,0.13) 0%, rgba(37,167,122,0.045) 36%, rgba(25,92,133,0.055) 58%, rgba(255,255,255,0) 74%)",
           transform: "translate3d(-999px, -999px, 0)",
         }}
       />
 
       <div
         ref={dotRef}
-        className="absolute h-2 w-2 rounded-full bg-[#F1912E] opacity-0 shadow-[0_0_18px_rgba(241,145,46,0.45)] transition-opacity duration-300"
+        className="absolute h-2 w-2 rounded-full bg-[#F1912E] opacity-0 shadow-[0_0_14px_rgba(241,145,46,0.38)] transition-opacity duration-300"
         style={{
           transform: "translate3d(-999px, -999px, 0)",
         }}
@@ -827,7 +831,7 @@ export default function SyrianHumanistsWebsite() {
         isDark ? "bg-[#0B1418] text-[#EAF2F5]" : "bg-[#F8FAF7] text-[#14232B]"
       )}
     >
-      <MouseAura isDark={isDark} />
+      <MouseAura key={lang} isDark={isDark} />
 
       <header
         className={cx(
@@ -1272,7 +1276,12 @@ export default function SyrianHumanistsWebsite() {
             isAr ? "text-right" : "text-left"
           }`}
         >
-          <div className={`flex flex-col ${isAr ? "items-end" : "items-start"}`}>
+          <div
+            className={cx(
+              "flex max-w-xl flex-col",
+              isAr ? "items-end pr-4 md:pr-0" : "items-start pl-4 md:pl-0"
+            )}
+          >
             <FullLogo src={footerLogo} alt={copy.logoAlt} />
 
             <p
