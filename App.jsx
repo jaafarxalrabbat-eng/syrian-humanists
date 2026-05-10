@@ -108,14 +108,17 @@ function runSelfTests() {
   console.assert(building.length === 4, "Expected 4 building cards.");
   console.assert(principles.length === 6, "Expected 6 principles.");
   console.assert(faqs.length === 6, "Expected 6 FAQ items.");
+
   console.assert(
     faqs.some((item) => item.q === "Is this an anti-religion project?"),
     "Expected FAQ to clarify this is not an anti-religion project."
   );
+
   console.assert(
     building.every((item) => /developing|aim|shaping|hope/i.test(item.text)),
     "Building cards should use careful future-oriented language."
   );
+
   console.assert(
     !building.some((item) => /we provide/i.test(item.text)),
     "Building cards should not claim active services with 'we provide'."
@@ -129,14 +132,20 @@ function runSelfTests() {
     ...faqs.flatMap((item) => [item.q, item.a]),
   ].join(" ");
 
-  console.assert(!/[؀-ۿ]/.test(textContent), "Expected no Arabic-script text in website copy data.");
+  console.assert(
+    !/[\u0600-\u06FF]/.test(textContent),
+    "Expected no Arabic-script text in website copy data."
+  );
 }
 
 runSelfTests();
 
 function IconGlyph({ children, className = "" }) {
   return (
-    <span className={`inline-flex items-center justify-center leading-none ${className}`} aria-hidden="true">
+    <span
+      className={`inline-flex items-center justify-center leading-none ${className}`}
+      aria-hidden="true"
+    >
       {children}
     </span>
   );
@@ -146,7 +155,13 @@ function ArrowIcon({ className = "" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="m13 6 6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="m13 6 6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -154,7 +169,13 @@ function ArrowIcon({ className = "" }) {
 function ChevronIcon({ className = "" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="m6 9 6 6 6-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -179,7 +200,13 @@ function MailIcon({ className = "" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M4 6h16v12H4V6Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="m4 7 8 6 8-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -205,25 +232,6 @@ function FullLogo({ className = "" }) {
     />
   );
 }
-function FullLogo({ className = "" }) {
-  return (
-    <img
-      src={logoFull}
-      alt="Syrian Humanists full logo"
-      className={`h-20 w-auto object-contain ${className}`}
-    />
-  );
-}
-
-function FullLogo({ className = "" }) {
-  return (
-    <img
-      src={logoFull}
-      alt="Syrian Humanists full logo"
-      className={`h-20 w-auto object-contain ${className}`}
-    />
-  );
-}
 
 function SectionLabel({ children }) {
   return (
@@ -235,11 +243,14 @@ function SectionLabel({ children }) {
 }
 
 function Button({ children, variant = "primary", href = "#contact" }) {
-  const base = "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-4";
+  const base =
+    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-4";
+
   const styles =
     variant === "primary"
       ? "bg-[#195C85] text-white shadow-lg shadow-[#195C85]/20 hover:-translate-y-0.5 hover:bg-[#144b6d] focus:ring-[#7CCBAE]/40"
       : "border border-[#195C85]/20 bg-white text-[#195C85] hover:-translate-y-0.5 hover:border-[#25A77A]/40 hover:bg-[#F8FAF7] focus:ring-[#7CCBAE]/30";
+
   return (
     <a href={href} className={`${base} ${styles}`}>
       {children}
@@ -294,12 +305,16 @@ export default function SyrianHumanistsWebsite() {
       <header className="sticky top-0 z-50 border-b border-[#195C85]/10 bg-[#F8FAF7]/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
           <a href="#top" aria-label="Syrian Humanists home">
-            <FullLogo />
+            <LogoMark />
           </a>
 
           <nav className="hidden items-center gap-8 lg:flex">
             {nav.map((item) => (
-              <a key={item.href} href={item.href} className="text-sm font-semibold text-[#14232B]/70 transition hover:text-[#195C85]">
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm font-semibold text-[#14232B]/70 transition hover:text-[#195C85]"
+              >
                 {item.label}
               </a>
             ))}
@@ -323,7 +338,12 @@ export default function SyrianHumanistsWebsite() {
           <div className="border-t border-[#195C85]/10 bg-white px-5 py-5 lg:hidden">
             <div className="flex flex-col gap-4">
               {nav.map((item) => (
-                <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)} className="font-semibold text-[#14232B]/80">
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="font-semibold text-[#14232B]/80"
+                >
                   {item.label}
                 </a>
               ))}
@@ -341,19 +361,31 @@ export default function SyrianHumanistsWebsite() {
           <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
               <SectionLabel>Independent initiative in development</SectionLabel>
+
               <h1 className="max-w-4xl text-5xl font-black leading-[1.04] tracking-tight text-[#14232B] sm:text-6xl lg:text-7xl">
                 A calm voice for dignity, conscience, and human solidarity.
               </h1>
+
               <p className="mt-7 max-w-2xl text-lg leading-8 text-[#14232B]/72 sm:text-xl">
-                Syrian Humanists is an early-stage initiative to create a safe, humane, and intellectually honest space for Syrians who value freedom of conscience and often face pressure, isolation, or silence because of it.
+                Syrian Humanists is an early-stage initiative to create a safe,
+                humane, and intellectually honest space for Syrians who value
+                freedom of conscience and often face pressure, isolation, or
+                silence because of it.
               </p>
+
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
                 <Button href="#about">Learn More</Button>
-                <Button href="#contact" variant="secondary">Support the Development</Button>
+                <Button href="#contact" variant="secondary">
+                  Support the Development
+                </Button>
               </div>
+
               <div className="mt-8 flex flex-wrap gap-3">
                 {["Freedom of conscience", "Critical thinking", "Peaceful dialogue"].map((tag) => (
-                  <span key={tag} className="rounded-full border border-[#25A77A]/20 bg-white/70 px-4 py-2 text-sm font-semibold text-[#195C85]">
+                  <span
+                    key={tag}
+                    className="rounded-full border border-[#25A77A]/20 bg-white/70 px-4 py-2 text-sm font-semibold text-[#195C85]"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -371,25 +403,42 @@ export default function SyrianHumanistsWebsite() {
             <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
               <div>
                 <SectionLabel>About</SectionLabel>
-                <h2 className="text-4xl font-black tracking-tight text-[#195C85] md:text-5xl">What Syrian Humanists is becoming</h2>
+                <h2 className="text-4xl font-black tracking-tight text-[#195C85] md:text-5xl">
+                  What Syrian Humanists is becoming
+                </h2>
               </div>
 
               <div className="rounded-[2.5rem] border border-[#195C85]/10 bg-white p-8 shadow-sm md:p-10">
                 <p className="text-xl leading-9 text-[#14232B]/80">
-                  Syrian Humanists is being developed as a careful intellectual and human support initiative for Syrians who seek dignity, meaning, and ethical self-direction beyond inherited fear or silence.
+                  Syrian Humanists is being developed as a careful intellectual
+                  and human support initiative for Syrians who seek dignity,
+                  meaning, and ethical self-direction beyond inherited fear or
+                  silence.
                 </p>
+
                 <p className="mt-6 leading-8 text-[#14232B]/70">
-                  It is currently in feasibility study and concept development. The work now is to prepare the legal, ethical, organizational, and human foundations before growth. The aim is not speed. The aim is responsibility.
+                  It is currently in feasibility study and concept development.
+                  The work now is to prepare the legal, ethical, organizational,
+                  and human foundations before growth. The aim is not speed. The
+                  aim is responsibility.
                 </p>
+
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
                   {[
                     ["Current status", "Planning & concept development"],
                     ["Core aim", "Safe support network & Arabic humanist content"],
                     ["Focus", "Syrian free thinkers and young people"],
                   ].map(([k, v]) => (
-                    <div key={k} className="rounded-2xl bg-[#F8FAF7] p-4 ring-1 ring-[#7CCBAE]/25">
-                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#25A77A]">{k}</p>
-                      <p className="mt-2 text-sm font-bold leading-6 text-[#14232B]">{v}</p>
+                    <div
+                      key={k}
+                      className="rounded-2xl bg-[#F8FAF7] p-4 ring-1 ring-[#7CCBAE]/25"
+                    >
+                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#25A77A]">
+                        {k}
+                      </p>
+                      <p className="mt-2 text-sm font-bold leading-6 text-[#14232B]">
+                        {v}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -402,7 +451,8 @@ export default function SyrianHumanistsWebsite() {
           <div className="mx-auto max-w-6xl text-center">
             <SectionLabel>Vision</SectionLabel>
             <h2 className="text-4xl font-black leading-tight tracking-tight text-[#195C85] md:text-6xl">
-              A future where every Syrian can live with dignity, think freely, and belong without fear.
+              A future where every Syrian can live with dignity, think freely,
+              and belong without fear.
             </h2>
           </div>
         </section>
@@ -411,17 +461,26 @@ export default function SyrianHumanistsWebsite() {
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
             <div className="rounded-[2.5rem] bg-[#195C85] p-8 text-white shadow-xl shadow-[#195C85]/20 md:p-10">
               <SectionLabel>Mission</SectionLabel>
-              <h2 className="text-3xl font-black md:text-4xl">Building careful foundations before scale.</h2>
+              <h2 className="text-3xl font-black md:text-4xl">
+                Building careful foundations before scale.
+              </h2>
               <p className="mt-6 leading-8 text-white/82">
-                The mission is to develop safe intellectual, ethical, and humanistic resources and networks for Syrians who need a calmer language for conscience, dignity, and responsibility.
+                The mission is to develop safe intellectual, ethical, and
+                humanistic resources and networks for Syrians who need a calmer
+                language for conscience, dignity, and responsibility.
               </p>
             </div>
 
             <div className="rounded-[2.5rem] border border-[#25A77A]/20 bg-white p-8 shadow-sm md:p-10">
               <SectionLabel>Why it matters</SectionLabel>
-              <h2 className="text-3xl font-black text-[#14232B] md:text-4xl">The need is human before it is organizational.</h2>
+              <h2 className="text-3xl font-black text-[#14232B] md:text-4xl">
+                The need is human before it is organizational.
+              </h2>
               <p className="mt-6 leading-8 text-[#14232B]/70">
-                Many people who move toward secular or humanist values face isolation, pressure, and the need to hide. Syrian Humanists exists as a developing response to that human need: dignity, meaning, belonging, and a non-dogmatic ethical alternative.
+                Many people who move toward secular or humanist values face
+                isolation, pressure, and the need to hide. Syrian Humanists
+                exists as a developing response to that human need: dignity,
+                meaning, belonging, and a non-dogmatic ethical alternative.
               </p>
             </div>
           </div>
@@ -431,12 +490,20 @@ export default function SyrianHumanistsWebsite() {
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto mb-12 max-w-3xl text-center">
               <SectionLabel>Values</SectionLabel>
-              <h2 className="text-4xl font-black tracking-tight text-[#14232B] md:text-5xl">The moral language of the project</h2>
-              <p className="mt-5 text-lg leading-8 text-[#14232B]/70">Simple values, held carefully. No hostility. No slogans. Just a humane foundation for thinking and living together.</p>
+              <h2 className="text-4xl font-black tracking-tight text-[#14232B] md:text-5xl">
+                The moral language of the project
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-[#14232B]/70">
+                Simple values, held carefully. No hostility. No slogans. Just a
+                humane foundation for thinking and living together.
+              </p>
             </div>
+
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {values.map((v) => (
-                <Card key={v.title} icon={v.icon} title={v.title}>{v.text}</Card>
+                <Card key={v.title} icon={v.icon} title={v.title}>
+                  {v.text}
+                </Card>
               ))}
             </div>
           </div>
@@ -447,15 +514,22 @@ export default function SyrianHumanistsWebsite() {
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
               <div>
                 <SectionLabel>What we are building</SectionLabel>
-                <h2 className="text-4xl font-black tracking-tight text-[#195C85] md:text-5xl">A responsible platform, not a loud campaign.</h2>
+                <h2 className="text-4xl font-black tracking-tight text-[#195C85] md:text-5xl">
+                  A responsible platform, not a loud campaign.
+                </h2>
               </div>
               <p className="text-lg leading-8 text-[#14232B]/70">
-                Because the initiative is still developing, the language is intentionally future-oriented. The goal is to design safe, useful, and realistic pathways before making public promises.
+                Because the initiative is still developing, the language is
+                intentionally future-oriented. The goal is to design safe,
+                useful, and realistic pathways before making public promises.
               </p>
             </div>
+
             <div className="mt-12 grid gap-5 md:grid-cols-2">
               {building.map((b) => (
-                <Card key={b.title} icon={b.icon} title={b.title}>{b.text}</Card>
+                <Card key={b.title} icon={b.icon} title={b.title}>
+                  {b.text}
+                </Card>
               ))}
             </div>
           </div>
@@ -466,11 +540,17 @@ export default function SyrianHumanistsWebsite() {
             <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
               <div>
                 <SectionLabel>Principles</SectionLabel>
-                <h2 className="text-4xl font-black tracking-tight text-[#14232B] md:text-5xl">Clear boundaries make the project safer.</h2>
+                <h2 className="text-4xl font-black tracking-tight text-[#14232B] md:text-5xl">
+                  Clear boundaries make the project safer.
+                </h2>
               </div>
+
               <div className="grid gap-4 sm:grid-cols-2">
                 {principles.map((p) => (
-                  <div key={p} className="flex items-start gap-3 rounded-2xl bg-[#F8FAF7] p-4 ring-1 ring-[#7CCBAE]/25">
+                  <div
+                    key={p}
+                    className="flex items-start gap-3 rounded-2xl bg-[#F8FAF7] p-4 ring-1 ring-[#7CCBAE]/25"
+                  >
                     <div className="mt-1 h-3 w-3 rounded-full bg-[#F1912E]" />
                     <p className="font-bold text-[#14232B]/85">{p}</p>
                   </div>
@@ -486,9 +566,14 @@ export default function SyrianHumanistsWebsite() {
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#195C85] text-2xl text-white">
                 <IconGlyph>🔐</IconGlyph>
               </div>
-              <h2 className="text-3xl font-black text-[#14232B] md:text-4xl">Safety and privacy first</h2>
+              <h2 className="text-3xl font-black text-[#14232B] md:text-4xl">
+                Safety and privacy first
+              </h2>
               <p className="mt-6 leading-8 text-[#14232B]/70">
-                Privacy, anonymity, and careful communication are central to the project. Syrian Humanists will not make careless technical promises; it will build with caution, consultation, and realistic safety standards.
+                Privacy, anonymity, and careful communication are central to the
+                project. Syrian Humanists will not make careless technical
+                promises; it will build with caution, consultation, and realistic
+                safety standards.
               </p>
             </div>
 
@@ -496,9 +581,14 @@ export default function SyrianHumanistsWebsite() {
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#25A77A] text-2xl text-white">
                 <IconGlyph>🌿</IconGlyph>
               </div>
-              <h2 className="text-3xl font-black text-[#14232B] md:text-4xl">Inspired by humanist traditions</h2>
+              <h2 className="text-3xl font-black text-[#14232B] md:text-4xl">
+                Inspired by humanist traditions
+              </h2>
               <p className="mt-6 leading-8 text-[#14232B]/70">
-                The initiative is inspired by the wider humanist tradition: freedom, self-determination, responsibility, dignity, and care for others. It is not presented as an official affiliate of any organization.
+                The initiative is inspired by the wider humanist tradition:
+                freedom, self-determination, responsibility, dignity, and care
+                for others. It is not presented as an official affiliate of any
+                organization.
               </p>
             </div>
           </div>
@@ -508,20 +598,37 @@ export default function SyrianHumanistsWebsite() {
           <div className="mx-auto max-w-4xl">
             <div className="mb-10 text-center">
               <SectionLabel>FAQ</SectionLabel>
-              <h2 className="text-4xl font-black tracking-tight text-[#195C85] md:text-5xl">Clear answers, careful language</h2>
+              <h2 className="text-4xl font-black tracking-tight text-[#195C85] md:text-5xl">
+                Clear answers, careful language
+              </h2>
             </div>
+
             <div className="space-y-4">
               {faqs.map((item, index) => (
-                <div key={item.q} className="overflow-hidden rounded-3xl border border-[#195C85]/10 bg-white shadow-sm">
+                <div
+                  key={item.q}
+                  className="overflow-hidden rounded-3xl border border-[#195C85]/10 bg-white shadow-sm"
+                >
                   <button
                     className="flex w-full items-center justify-between gap-6 p-6 text-left"
                     onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
                     type="button"
                   >
-                    <span className="text-lg font-extrabold text-[#14232B]">{item.q}</span>
-                    <ChevronIcon className={`h-5 w-5 shrink-0 text-[#195C85] transition-transform ${openFaq === index ? "rotate-180" : ""}`} />
+                    <span className="text-lg font-extrabold text-[#14232B]">
+                      {item.q}
+                    </span>
+                    <ChevronIcon
+                      className={`h-5 w-5 shrink-0 text-[#195C85] transition-transform ${
+                        openFaq === index ? "rotate-180" : ""
+                      }`}
+                    />
                   </button>
-                  {openFaq === index && <p className="px-6 pb-6 leading-8 text-[#14232B]/70">{item.a}</p>}
+
+                  {openFaq === index && (
+                    <p className="px-6 pb-6 leading-8 text-[#14232B]/70">
+                      {item.a}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -533,21 +640,36 @@ export default function SyrianHumanistsWebsite() {
             <div className="grid gap-8 p-8 md:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:p-16">
               <div>
                 <SectionLabel>Contact / Join</SectionLabel>
-                <h2 className="text-4xl font-black tracking-tight md:text-5xl">Help shape the idea carefully.</h2>
+                <h2 className="text-4xl font-black tracking-tight md:text-5xl">
+                  Help shape the idea carefully.
+                </h2>
                 <p className="mt-6 max-w-2xl leading-8 text-white/82">
-                  At this stage, thoughtful feedback matters more than scale. Connect if you want to share advice, ask questions, contribute to the idea, or start a respectful conversation.
+                  At this stage, thoughtful feedback matters more than scale.
+                  Connect if you want to share advice, ask questions, contribute
+                  to the idea, or start a respectful conversation.
                 </p>
+
                 <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                  <a href="mailto:hello@syrianhumanists.org" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#195C85] transition hover:-translate-y-0.5 hover:bg-[#F8FAF7]">
+                  <a
+                    href="mailto:hello@syrianhumanists.org"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#195C85] transition hover:-translate-y-0.5 hover:bg-[#F8FAF7]"
+                  >
                     <MailIcon className="h-4 w-4" /> Start a Conversation
                   </a>
-                  <a href="#building" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10">
+
+                  <a
+                    href="#building"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10"
+                  >
                     Support the Development <ArrowIcon className="h-4 w-4" />
                   </a>
                 </div>
               </div>
+
               <div className="rounded-[2rem] bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur">
-                <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#7CCBAE]">This stage needs</p>
+                <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#7CCBAE]">
+                  This stage needs
+                </p>
                 <ul className="mt-5 space-y-4 text-white/86">
                   <li>• Honest human feedback</li>
                   <li>• Practical advice</li>
@@ -565,15 +687,20 @@ export default function SyrianHumanistsWebsite() {
           <div>
             <FullLogo />
             <p className="mt-4 max-w-xl text-sm leading-7 text-[#14232B]/65">
-              Syrian Humanists — dignity, conscience, solidarity. An independent initiative in development.
+              Syrian Humanists — dignity, conscience, solidarity. An independent
+              initiative in development.
             </p>
           </div>
+
           <div className="flex flex-wrap gap-5 text-sm font-semibold text-[#14232B]/65">
             {nav.map((item) => (
-              <a key={item.href} href={item.href} className="hover:text-[#195C85]">{item.label}</a>
+              <a key={item.href} href={item.href} className="hover:text-[#195C85]">
+                {item.label}
+              </a>
             ))}
           </div>
         </div>
+
         <div className="mx-auto mt-8 max-w-7xl border-t border-[#195C85]/10 pt-6 text-sm text-[#14232B]/50">
           © {new Date().getFullYear()} Syrian Humanists. Independent initiative in development.
         </div>
