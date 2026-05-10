@@ -179,7 +179,7 @@ const content = {
     ],
 
     footerText:
-      "Syrian Humanists — dignity, conscience, solidarity. An independent initiative in development.",
+  "Syrian Humanists — dignity, conscience, solidarity.\nAn independent initiative in development.",
     copyright: "Syrian Humanists. Independent initiative in development.",
   },
 
@@ -357,7 +357,7 @@ const content = {
     ],
 
     footerText:
-      "الإنسانيون السوريون — الكرامة، الضمير، التضامن. مبادرة مستقلة قيد التطوير.",
+  "الإنسانيون السوريون — الكرامة، الضمير، التضامن.\nمبادرة مستقلة قيد التطوير.",
     copyright: "الإنسانيون السوريون. مبادرة مستقلة قيد التطوير.",
   },
 };
@@ -963,9 +963,9 @@ export default function SyrianHumanistsWebsite() {
         <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
             <FullLogo src={footerLogo} alt={copy.logoAlt} />
-            <p className="mt-4 max-w-xl text-sm leading-7 text-[#14232B]/65">
-              {copy.footerText}
-            </p>
+            <p className="mt-4 max-w-xl whitespace-pre-line text-sm leading-7 text-[#14232B]/65">
+  {copy.footerText}
+</p>
           </div>
 
           <div className="flex flex-wrap gap-5 text-sm font-semibold text-[#14232B]/65">
