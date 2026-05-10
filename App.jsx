@@ -691,9 +691,15 @@ export default function SyrianHumanistsWebsite() {
           <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div className={align}>
               <SectionLabel>{copy.badge}</SectionLabel>
-              <h1 className="max-w-4xl text-5xl font-black leading-[1.04] tracking-tight text-[#14232B] sm:text-6xl lg:text-7xl">
-                {copy.heroTitle}
-              </h1>
+         <h1
+  className={`max-w-4xl font-extrabold tracking-tight text-[#14232B] ${
+    isAr
+      ? "text-4xl leading-[1.18] sm:text-5xl lg:text-6xl"
+      : "text-4xl leading-[1.08] sm:text-5xl lg:text-6xl"
+  }`}
+>
+  {copy.heroTitle}
+</h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-[#14232B]/72 sm:text-xl">
                 {copy.heroText}
               </p>
