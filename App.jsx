@@ -134,8 +134,7 @@ const content = {
 
     inspirationTitle: "Inspired by humanist traditions",
     inspirationText:
-      "The initiative is inspired by the wider humanist tradition: freedom, self-determination, responsibility, dignity, and care for others. It is not presented as an official affiliate of any organization.",
-
+  "The initiative is inspired by the wider humanist tradition, including movements such as Humanistisch Verbond, which emphasize freedom, self-determination, responsibility, dignity, and care for others. Syrian Humanists remains an independent initiative in development and is not presented as an official affiliate of any organization.",
     faqLabel: "FAQ",
     faqTitle: "Clear answers, careful language",
     faqs: [
@@ -312,7 +311,7 @@ const content = {
 
     inspirationTitle: "مستوحاة من التقاليد الإنسانية",
     inspirationText:
-      "تستلهم المبادرة من التقليد الإنساني الأوسع: الحرية، تقرير المصير، المسؤولية، الكرامة، والعناية بالآخرين. ولا تُقدَّم باعتبارها فرعاً رسمياً لأي منظمة.",
+  "تستلهم المبادرة من التقليد الإنساني الأوسع، ومن حركات إنسانية مثل Humanistisch Verbond التي تؤكد على الحرية، تقرير المصير، المسؤولية، الكرامة، والعناية بالآخرين. وتبقى مبادرة الإنسانيين السوريين مبادرة مستقلة قيد التطوير، ولا تُقدَّم باعتبارها فرعاً رسمياً لأي منظمة.",
 
     faqLabel: "أسئلة",
     faqTitle: "إجابات واضحة بلغة حذرة",
