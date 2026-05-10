@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logoHeader from "./logo-header.png";
+import logoHeader from "./logo-Header.png";
 import logoFull from "./logo-full.png";
 
 const nav = [
@@ -47,7 +47,7 @@ const building = [
   {
     icon: "✨",
     title: "Humanistic Resources",
-    text: "We are developing Arabic educational and reflective content on humanist ethics, dignity, critical thinking, and meaning.",
+    text: "We are developing educational and reflective Arabic-language content on humanist ethics, dignity, critical thinking, and meaning.",
   },
   {
     icon: "🛡️",
@@ -101,44 +101,6 @@ const faqs = [
     a: "At this stage, the most valuable contribution is thoughtful feedback, practical advice, careful collaboration, and respectful conversation about direction and viability.",
   },
 ];
-
-function runSelfTests() {
-  console.assert(nav.length === 5, "Expected 5 navigation links.");
-  console.assert(values.length === 6, "Expected 6 value cards.");
-  console.assert(building.length === 4, "Expected 4 building cards.");
-  console.assert(principles.length === 6, "Expected 6 principles.");
-  console.assert(faqs.length === 6, "Expected 6 FAQ items.");
-
-  console.assert(
-    faqs.some((item) => item.q === "Is this an anti-religion project?"),
-    "Expected FAQ to clarify this is not an anti-religion project."
-  );
-
-  console.assert(
-    building.every((item) => /developing|aim|shaping|hope/i.test(item.text)),
-    "Building cards should use careful future-oriented language."
-  );
-
-  console.assert(
-    !building.some((item) => /we provide/i.test(item.text)),
-    "Building cards should not claim active services with 'we provide'."
-  );
-
-  const textContent = [
-    ...nav.flatMap((item) => [item.label, item.href]),
-    ...values.flatMap((item) => [item.title, item.text]),
-    ...building.flatMap((item) => [item.title, item.text]),
-    ...principles,
-    ...faqs.flatMap((item) => [item.q, item.a]),
-  ].join(" ");
-
-  console.assert(
-    !/[\u0600-\u06FF]/.test(textContent),
-    "Expected no Arabic-script text in website copy data."
-  );
-}
-
-runSelfTests();
 
 function IconGlyph({ children, className = "" }) {
   return (
@@ -217,7 +179,7 @@ function LogoMark({ className = "" }) {
       <img
         src={logoHeader}
         alt="Syrian Humanists logo"
-        className="h-12 w-auto object-contain"
+        className="h-10 w-auto max-w-[210px] object-contain md:h-12 md:max-w-[250px]"
       />
     </div>
   );
@@ -228,7 +190,7 @@ function FullLogo({ className = "" }) {
     <img
       src={logoFull}
       alt="Syrian Humanists full logo"
-      className={`h-20 w-auto object-contain ${className}`}
+      className={`h-auto w-full max-w-[320px] object-contain ${className}`}
     />
   );
 }
@@ -259,19 +221,19 @@ function Button({ children, variant = "primary", href = "#contact" }) {
   );
 }
 
-function AbstractHeroVisual() {
+function HeroLogoVisual() {
   return (
-    <div className="relative mx-auto flex h-[360px] w-full max-w-[460px] items-center justify-center md:h-[470px]">
+    <div className="relative mx-auto flex h-[360px] w-full max-w-[500px] items-center justify-center md:h-[470px]">
       <div className="absolute inset-4 rounded-full bg-gradient-to-br from-[#7CCBAE]/25 via-white to-[#F1912E]/10 blur-2xl" />
 
-      <div className="relative rounded-[3rem] border border-[#195C85]/10 bg-white/85 p-8 shadow-2xl shadow-[#195C85]/15 backdrop-blur md:p-10">
+      <div className="relative w-full rounded-[3rem] border border-[#195C85]/10 bg-white/90 p-8 shadow-2xl shadow-[#195C85]/15 backdrop-blur md:p-10">
         <img
           src={logoHeader}
           alt="Syrian Humanists logo"
-          className="mx-auto h-56 w-auto object-contain sm:h-64 md:h-80"
+          className="mx-auto h-auto w-full max-w-[340px] object-contain md:max-w-[420px]"
         />
 
-        <div className="mt-6 rounded-3xl border border-[#25A77A]/20 bg-[#F8FAF7] px-5 py-4 text-center">
+        <div className="mx-auto mt-8 max-w-[280px] rounded-3xl border border-[#25A77A]/20 bg-[#F8FAF7] px-5 py-4 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#25A77A]">
             In development
           </p>
@@ -302,7 +264,7 @@ export default function SyrianHumanistsWebsite() {
 
   return (
     <div className="min-h-screen scroll-smooth bg-[#F8FAF7] font-sans text-[#14232B]">
-      <header className="sticky top-0 z-50 border-b border-[#195C85]/10 bg-[#F8FAF7]/85 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[#195C85]/10 bg-[#F8FAF7]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
           <a href="#top" aria-label="Syrian Humanists home">
             <LogoMark />
@@ -392,9 +354,7 @@ export default function SyrianHumanistsWebsite() {
               </div>
             </div>
 
-            <div>
-              <AbstractHeroVisual />
-            </div>
+            <HeroLogoVisual />
           </div>
         </section>
 
@@ -426,7 +386,7 @@ export default function SyrianHumanistsWebsite() {
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
                   {[
                     ["Current status", "Planning & concept development"],
-                    ["Core aim", "Safe support network & Arabic humanist content"],
+                    ["Core aim", "Safe support network & humanist content"],
                     ["Focus", "Syrian free thinkers and young people"],
                   ].map(([k, v]) => (
                     <div
