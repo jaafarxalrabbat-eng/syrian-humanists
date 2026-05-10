@@ -205,6 +205,25 @@ function FullLogo({ className = "" }) {
     />
   );
 }
+function FullLogo({ className = "" }) {
+  return (
+    <img
+      src={logoFull}
+      alt="Syrian Humanists full logo"
+      className={`h-20 w-auto object-contain ${className}`}
+    />
+  );
+}
+
+function FullLogo({ className = "" }) {
+  return (
+    <img
+      src={logoFull}
+      alt="Syrian Humanists full logo"
+      className={`h-20 w-auto object-contain ${className}`}
+    />
+  );
+}
 
 function SectionLabel({ children }) {
   return (
@@ -275,7 +294,7 @@ export default function SyrianHumanistsWebsite() {
       <header className="sticky top-0 z-50 border-b border-[#195C85]/10 bg-[#F8FAF7]/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
           <a href="#top" aria-label="Syrian Humanists home">
-            <LogoMark />
+            <FullLogo />
           </a>
 
           <nav className="hidden items-center gap-8 lg:flex">
