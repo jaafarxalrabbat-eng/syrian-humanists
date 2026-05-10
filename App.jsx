@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import logoHeader from "./logo-header.svg";
+import logoFull from "./logo-full.svg";
 const nav = [
   { label: "About", href: "#about" },
   { label: "Vision", href: "#vision" },
@@ -184,20 +185,12 @@ function MailIcon({ className = "" }) {
 
 function LogoMark({ className = "" }) {
   return (
-    <div className={`relative flex items-center gap-3 ${className}`}>
-      <div className="relative h-12 w-12 shrink-0 rounded-full border-[3px] border-[#195C85] bg-white shadow-sm">
-        <div className="absolute left-2 top-2 h-3 w-5 rounded-full bg-[#7CCBAE]" />
-        <div className="absolute bottom-2 left-1.5 h-4 w-5 rounded-full bg-[#25A77A]" />
-        <div className="absolute right-1.5 top-4 h-4 w-5 rounded-full bg-[#7CCBAE]" />
-        <div className="absolute left-[19px] top-[15px] h-3 w-3 rounded-full bg-[#195C85]" />
-        <div className="absolute left-[20px] top-[25px] h-4 w-2 rounded-full bg-[#195C85]" />
-        <div className="absolute right-[7px] top-[4px] h-6 w-1.5 rotate-[25deg] rounded-full bg-[#F1912E]" />
-        <div className="absolute right-[1px] top-[2px] h-2.5 w-4 rotate-[-25deg] rounded-full bg-[#F1912E]" />
-      </div>
-      <div className="leading-none">
-        <div className="text-lg font-extrabold tracking-tight text-[#195C85]">SYRIAN</div>
-        <div className="text-lg font-extrabold tracking-tight text-[#25A77A]">HUMANISTS</div>
-      </div>
+    <div className={`flex items-center gap-3 ${className}`}>
+      <img
+        src={logoHeader}
+        alt="Syrian Humanists logo"
+        className="h-12 w-auto object-contain"
+      />
     </div>
   );
 }
