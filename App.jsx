@@ -433,7 +433,7 @@ function MailIcon({ className = "" }) {
   );
 }
 
-function AmbientAura() {
+function AmbientAura({ isAr = false }) {
   return (
     <div
       aria-hidden="true"
@@ -448,7 +448,9 @@ function AmbientAura() {
       />
 
       <div
-        className="absolute -right-32 bottom-[-180px] h-[430px] w-[430px] rounded-full blur-3xl"
+        className={`absolute bottom-[-180px] h-[430px] w-[430px] rounded-full blur-3xl ${
+          isAr ? "-left-32" : "-right-32"
+        }`}
         style={{
           background:
             "radial-gradient(circle, rgba(241,145,46,0.18) 0%, rgba(241,145,46,0.08) 38%, rgba(241,145,46,0) 72%)",
@@ -456,7 +458,9 @@ function AmbientAura() {
       />
 
       <div
-        className="absolute left-[48%] top-[12%] h-[360px] w-[360px] -translate-x-1/2 rounded-full blur-3xl"
+        className={`absolute top-[12%] h-[360px] w-[360px] rounded-full blur-3xl ${
+          isAr ? "left-[18%]" : "right-[10%]"
+        }`}
         style={{
           background:
             "radial-gradient(circle, rgba(25,92,133,0.12) 0%, rgba(25,92,133,0.05) 42%, rgba(25,92,133,0) 72%)",
@@ -464,7 +468,9 @@ function AmbientAura() {
       />
 
       <svg
-        className="absolute right-[6%] top-[16%] h-[520px] w-[520px] opacity-[0.11]"
+        className={`absolute top-[14%] h-[520px] w-[520px] opacity-[0.11] ${
+          isAr ? "left-[2%]" : "right-[2%]"
+        }`}
         viewBox="0 0 520 520"
         fill="none"
       >
@@ -675,7 +681,7 @@ export default function SyrianHumanistsWebsite() {
 
       <main id="top">
         <section className="relative overflow-hidden px-5 pb-20 pt-14 lg:px-8 lg:pb-28 lg:pt-20">
-          <AmbientAura />
+          <AmbientAura isAr={isAr} />
 
           <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div className={align}>
