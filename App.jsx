@@ -702,8 +702,41 @@ function Logo({ src, alt }) {
   );
 }
 
-function FullLogo({ src, alt }) {
-  return <img src={src} alt={alt} className="block h-auto w-full object-contain" />;
+function FullLogo({ src, alt, isAr }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={cx(
+        "block h-auto w-full object-contain",
+        isAr ? "object-right" : "object-left"
+      )}
+    />
+  );
+}
+
+function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
+  return (
+    <div
+      dir={isAr ? "rtl" : "ltr"}
+      className={cx(
+        "w-[270px] max-w-full sm:w-[320px]",
+        isAr ? "text-right" : "text-left"
+      )}
+    >
+      <FullLogo src={footerLogo} alt={copy.logoAlt} isAr={isAr} />
+
+      <p
+        className={cx(
+          "mt-4 w-full whitespace-pre-line text-sm leading-7",
+          isAr ? "text-right" : "text-left",
+          isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
+        )}
+      >
+        {copy.footerText}
+      </p>
+    </div>
+  );
 }
 
 function HeroLogoVisual({ copy, isDark, isAr }) {
@@ -793,8 +826,10 @@ function HeroTitle({ isAr, isDark }) {
     >
       {isAr ? (
         <>
-          صوت هادئ من أجل <span className="text-[#25A77A]">الكرامة</span>
-          ، وحرية الضمير، و<span className="text-[#F1912E]">التضامن</span> الإنساني.
+          صوت هادئ من أجل{" "}
+          <span className="text-[#25A77A]">الكرامة</span>
+          ، وحرية الضمير، و
+          <span className="text-[#F1912E]">التضامن</span> الإنساني.
         </>
       ) : (
         <>
@@ -945,7 +980,6 @@ export default function SyrianHumanistsWebsite() {
           <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div className={align}>
               <SectionLabel isDark={isDark}>{copy.badge}</SectionLabel>
-
               <HeroTitle isAr={isAr} isDark={isDark} />
 
               <p className={cx("mt-7 max-w-2xl text-lg leading-8 sm:text-xl", isDark ? "text-[#EAF2F5]/70" : "text-[#14232B]/72")}>
@@ -1283,7 +1317,7 @@ export default function SyrianHumanistsWebsite() {
       >
         <div
           dir="ltr"
-          className="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-2 md:items-center"
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-2 md:items-start"
         >
           <div
             className={cx(
@@ -1303,29 +1337,18 @@ export default function SyrianHumanistsWebsite() {
 
           <div
             className={cx(
-              "order-1 flex w-full flex-col",
-              isAr ? "items-end md:order-2" : "items-start md:order-1"
+              "order-1 flex w-full",
+              isAr
+                ? "justify-end md:order-2"
+                : "justify-start md:order-1"
             )}
           >
-            <div
-              dir={isAr ? "rtl" : "ltr"}
-              className={cx(
-                "w-[320px] max-w-full",
-                isAr ? "text-right" : "text-left"
-              )}
-            >
-              <FullLogo src={footerLogo} alt={copy.logoAlt} />
-
-              <p
-                className={cx(
-                  "mt-4 w-full whitespace-pre-line text-sm leading-7",
-                  isAr ? "text-right" : "text-left",
-                  isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
-                )}
-              >
-                {copy.footerText}
-              </p>
-            </div>
+            <FooterIdentity
+              isAr={isAr}
+              footerLogo={footerLogo}
+              copy={copy}
+              isDark={isDark}
+            />
           </div>
         </div>
 
