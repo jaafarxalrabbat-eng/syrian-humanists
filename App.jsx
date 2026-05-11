@@ -745,8 +745,8 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
         className={cx(
           "mt-4 w-full",
           isAr
-            ? "pl-[42px] sm:pl-[50px] md:pl-[45px]"
-            : "pr-[28px] sm:pr-[36px] md:pr-[44px]"
+            ? "pl-[42px] sm:pl-[50px] md:pl-[60px]"
+            : "pr-[42px] sm:pr-[50px] md:pr-[60px]"
         )}
       >
         <p
