@@ -741,15 +741,22 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
     >
       <FullLogo src={footerLogo} alt={copy.logoAlt} isAr={isAr} />
 
-      <p
+      <div
         className={cx(
-          "mt-4 w-full whitespace-pre-line text-sm leading-7",
-          isAr ? "text-right" : "text-left",
-          isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
+          "mt-4 w-full",
+          isAr ? "flex justify-end" : "flex justify-start"
         )}
       >
-        {copy.footerText}
-      </p>
+        <p
+          className={cx(
+            "w-full whitespace-pre-line text-sm leading-7",
+            isAr ? "text-right" : "text-left",
+            isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
+          )}
+        >
+          {copy.footerText}
+        </p>
+      </div>
     </div>
   );
 }
