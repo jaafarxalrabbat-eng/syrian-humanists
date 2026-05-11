@@ -34,8 +34,8 @@ export default function App() {
         </nav>
 
         <div className="actions">
-          <button className="iconBtn" onClick={() => setDark(!dark)} aria-label="Toggle dark mode">
-            {dark ? "☀️" : "🌙"}
+          <button className="themeBtn" onClick={() => setDark(!dark)} aria-label="Toggle theme">
+            {dark ? t.light : t.dark}
           </button>
 
           <button className="iconBtn menuBtn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
@@ -54,6 +54,7 @@ export default function App() {
 
           <div className="mobileControls">
             <button onClick={() => setDark(!dark)}>{dark ? t.light : t.dark}</button>
+
             <div className="langToggle">
               <button className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>
                 EN
@@ -201,6 +202,7 @@ export default function App() {
                 <strong>{item.q}</strong>
                 <span>{openFaq === index ? "−" : "+"}</span>
               </button>
+
               {openFaq === index && <p>{item.a}</p>}
             </div>
           ))}
@@ -212,7 +214,12 @@ export default function App() {
         <h2>{t.contact.title}</h2>
         <p>{t.contact.text}</p>
 
-        <button className="primary" onClick={() => window.location.href = "mailto:contact@syrianhumanists.org"}>
+        <button
+          className="primary"
+          onClick={() => {
+            window.location.href = "mailto:contact@syrianhumanists.org";
+          }}
+        >
           {t.start} <span>{isAr ? "←" : "→"}</span>
         </button>
 
@@ -310,14 +317,39 @@ const content = {
     values: {
       label: "Values",
       title: "The moral language of the project",
-      text: "Simple values, held carefully. No hostility. No slogans. Just a humane foundation for thinking and living together.",
+      text:
+        "Simple values, held carefully. No hostility. No slogans. Just a humane foundation for thinking and living together.",
       items: [
-        { icon: "🤝", title: "Human Dignity", text: "Every person deserves respect, safety, and freedom from humiliation or fear." },
-        { icon: "🧭", title: "Freedom of Conscience", text: "People should be able to believe, not believe, question, and think without coercion." },
-        { icon: "🧠", title: "Critical Thinking", text: "We value reason, honest inquiry, and the courage to examine ideas carefully." },
-        { icon: "💬", title: "Peaceful Dialogue", text: "Difficult questions need calm conversations, not hostility or fear." },
-        { icon: "👥", title: "Solidarity", text: "No one should feel alone because of their convictions or search for meaning." },
-        { icon: "⚖️", title: "Responsibility", text: "Freedom becomes stronger when joined with care, ethics, and responsibility toward others." },
+        {
+          icon: "🤝",
+          title: "Human Dignity",
+          text: "Every person deserves respect, safety, and freedom from humiliation or fear.",
+        },
+        {
+          icon: "🧭",
+          title: "Freedom of Conscience",
+          text: "People should be able to believe, not believe, question, and think without coercion.",
+        },
+        {
+          icon: "🧠",
+          title: "Critical Thinking",
+          text: "We value reason, honest inquiry, and the courage to examine ideas carefully.",
+        },
+        {
+          icon: "💬",
+          title: "Peaceful Dialogue",
+          text: "Difficult questions need calm conversations, not hostility or fear.",
+        },
+        {
+          icon: "👥",
+          title: "Solidarity",
+          text: "No one should feel alone because of their convictions or search for meaning.",
+        },
+        {
+          icon: "⚖️",
+          title: "Responsibility",
+          text: "Freedom becomes stronger when joined with care, ethics, and responsibility toward others.",
+        },
       ],
     },
     building: {
@@ -326,10 +358,22 @@ const content = {
       text:
         "Because the initiative is still developing, the language is intentionally careful. The goal is to design safe, useful, and realistic pathways before making public promises.",
       items: [
-        { title: "Humanistic resources", text: "Educational Arabic-language content on ethics, dignity, critical thinking, and meaning." },
-        { title: "Safe community", text: "A future privacy-conscious space where Syrians can connect and reflect carefully." },
-        { title: "Dialogue and reflection", text: "Constructive conversations about identity, belonging, rights, and responsibility." },
-        { title: "Freedom of conscience", text: "Awareness around the right to believe, not believe, question, and think freely." },
+        {
+          title: "Humanistic resources",
+          text: "Educational Arabic-language content on ethics, dignity, critical thinking, and meaning.",
+        },
+        {
+          title: "Safe community",
+          text: "A future privacy-conscious space where Syrians can connect and reflect carefully.",
+        },
+        {
+          title: "Dialogue and reflection",
+          text: "Constructive conversations about identity, belonging, rights, and responsibility.",
+        },
+        {
+          title: "Freedom of conscience",
+          text: "Awareness around the right to believe, not believe, question, and think freely.",
+        },
       ],
     },
     principles: {
@@ -358,23 +402,28 @@ const content = {
     faq: [
       {
         q: "What is Syrian Humanists?",
-        a: "Syrian Humanists is an independent initiative in development. It aims to create a safe, humane, and intellectually honest space for Syrians who value dignity, freedom of conscience, critical thinking, and peaceful coexistence.",
+        a:
+          "Syrian Humanists is an independent initiative in development. It aims to create a safe, humane, and intellectually honest space for Syrians who value dignity, freedom of conscience, critical thinking, and peaceful coexistence.",
       },
       {
         q: "Is this a political project?",
-        a: "No. It is not a party, political movement, or campaign. It is a developing humanist and educational initiative focused on conscience, dignity, and careful dialogue.",
+        a:
+          "No. It is not a party, political movement, or campaign. It is a developing humanist and educational initiative focused on conscience, dignity, and careful dialogue.",
       },
       {
         q: "Is this an anti-religion project?",
-        a: "No. The project is not about hostility toward religion or believers. It supports freedom of conscience, including the right to believe, not believe, question, and think freely.",
+        a:
+          "No. The project is not about hostility toward religion or believers. It supports freedom of conscience, including the right to believe, not believe, question, and think freely.",
       },
       {
         q: "Who is it for?",
-        a: "It is mainly for Syrians who seek a safe language for free thought, humanist ethics, dignity, and belonging without fear.",
+        a:
+          "It is mainly for Syrians who seek a safe language for free thought, humanist ethics, dignity, and belonging without fear.",
       },
       {
         q: "Is the project already registered?",
-        a: "No. It is currently an independent initiative in development. Legal, ethical, and organizational questions are being studied carefully before any formal growth.",
+        a:
+          "No. It is currently an independent initiative in development. Legal, ethical, and organizational questions are being studied carefully before any formal growth.",
       },
     ],
     contact: {
@@ -383,7 +432,8 @@ const content = {
       text:
         "At this stage, thoughtful feedback matters more than scale. Connect if you want to share advice, ask questions, contribute to the idea, or start a respectful conversation.",
     },
-    footer: "Syrian Humanists — dignity, conscience, solidarity. An independent initiative in development.",
+    footer:
+      "Syrian Humanists — dignity, conscience, solidarity. An independent initiative in development.",
   },
 
   ar: {
@@ -406,8 +456,8 @@ const content = {
     learnMore: "اعرف أكثر",
     support: "دعم التطوير",
     start: "ابدأ محادثة",
-    dark: "الوضع الداكن",
-    light: "الوضع الفاتح",
+    dark: "داكن",
+    light: "فاتح",
     chips: ["حرية الضمير", "التفكير النقدي", "حوار سلمي"],
     about: {
       label: "عن المبادرة",
@@ -442,14 +492,39 @@ const content = {
     values: {
       label: "القيم",
       title: "اللغة الأخلاقية للمشروع",
-      text: "قيم بسيطة وحذرة. لا عداء. لا شعارات. فقط أساس إنساني للتفكير والعيش معاً.",
+      text:
+        "قيم بسيطة وحذرة. لا عداء. لا شعارات. فقط أساس إنساني للتفكير والعيش معاً.",
       items: [
-        { icon: "🤝", title: "الكرامة الإنسانية", text: "كل إنسان يستحق الاحترام والأمان والعيش بلا إهانة أو خوف." },
-        { icon: "🧭", title: "حرية الضمير", text: "للناس حق الإيمان أو عدم الإيمان أو السؤال أو التفكير دون إكراه." },
-        { icon: "🧠", title: "التفكير النقدي", text: "نقدّر العقل والبحث الصادق والشجاعة في فحص الأفكار بهدوء." },
-        { icon: "💬", title: "حوار سلمي", text: "الأسئلة الصعبة تحتاج حواراً هادئاً لا عداء ولا خوفاً." },
-        { icon: "👥", title: "التضامن", text: "لا ينبغي لأحد أن يشعر بالوحدة بسبب قناعته أو بحثه عن المعنى." },
-        { icon: "⚖️", title: "المسؤولية", text: "تصبح الحرية أقوى عندما ترتبط بالعناية والأخلاق والمسؤولية تجاه الآخرين." },
+        {
+          icon: "🤝",
+          title: "الكرامة الإنسانية",
+          text: "كل إنسان يستحق الاحترام والأمان والعيش بلا إهانة أو خوف.",
+        },
+        {
+          icon: "🧭",
+          title: "حرية الضمير",
+          text: "للناس حق الإيمان أو عدم الإيمان أو السؤال أو التفكير دون إكراه.",
+        },
+        {
+          icon: "🧠",
+          title: "التفكير النقدي",
+          text: "نقدّر العقل والبحث الصادق والشجاعة في فحص الأفكار بهدوء.",
+        },
+        {
+          icon: "💬",
+          title: "حوار سلمي",
+          text: "الأسئلة الصعبة تحتاج حواراً هادئاً لا عداء ولا خوفاً.",
+        },
+        {
+          icon: "👥",
+          title: "التضامن",
+          text: "لا ينبغي لأحد أن يشعر بالوحدة بسبب قناعته أو بحثه عن المعنى.",
+        },
+        {
+          icon: "⚖️",
+          title: "المسؤولية",
+          text: "تصبح الحرية أقوى عندما ترتبط بالعناية والأخلاق والمسؤولية تجاه الآخرين.",
+        },
       ],
     },
     building: {
@@ -458,10 +533,22 @@ const content = {
       text:
         "لأن المبادرة لا تزال قيد التطوير، فاللغة مقصودة وحذرة. الهدف هو تصميم مسارات آمنة ومفيدة وواقعية قبل إطلاق وعود عامة.",
       items: [
-        { title: "موارد إنسانية", text: "محتوى عربي تعليمي حول الأخلاق والكرامة والتفكير النقدي والمعنى." },
-        { title: "مجتمع آمن", text: "مساحة مستقبلية واعية بالخصوصية للتواصل والتأمل بحذر." },
-        { title: "حوار وتأمل", text: "محادثات بناءة حول الهوية والانتماء والحقوق والمسؤولية." },
-        { title: "حرية الضمير", text: "توعية بحق الإيمان أو عدم الإيمان أو السؤال أو التفكير بحرية." },
+        {
+          title: "موارد إنسانية",
+          text: "محتوى عربي تعليمي حول الأخلاق والكرامة والتفكير النقدي والمعنى.",
+        },
+        {
+          title: "مجتمع آمن",
+          text: "مساحة مستقبلية واعية بالخصوصية للتواصل والتأمل بحذر.",
+        },
+        {
+          title: "حوار وتأمل",
+          text: "محادثات بناءة حول الهوية والانتماء والحقوق والمسؤولية.",
+        },
+        {
+          title: "حرية الضمير",
+          text: "توعية بحق الإيمان أو عدم الإيمان أو السؤال أو التفكير بحرية.",
+        },
       ],
     },
     principles: {
@@ -490,23 +577,28 @@ const content = {
     faq: [
       {
         q: "ما هي Syrian Humanists؟",
-        a: "هي مبادرة مستقلة قيد التطوير تهدف إلى خلق مساحة آمنة وإنسانية وصادقة فكرياً للسوريين الذين يقدّرون الكرامة وحرية الضمير والتفكير النقدي والتعايش السلمي.",
+        a:
+          "هي مبادرة مستقلة قيد التطوير تهدف إلى خلق مساحة آمنة وإنسانية وصادقة فكرياً للسوريين الذين يقدّرون الكرامة وحرية الضمير والتفكير النقدي والتعايش السلمي.",
       },
       {
         q: "هل هذا مشروع سياسي؟",
-        a: "لا. ليست حزباً أو حركة سياسية أو حملة. هي مبادرة إنسانية وتعليمية قيد التطوير تركّز على الضمير والكرامة والحوار الحذر.",
+        a:
+          "لا. ليست حزباً أو حركة سياسية أو حملة. هي مبادرة إنسانية وتعليمية قيد التطوير تركّز على الضمير والكرامة والحوار الحذر.",
       },
       {
         q: "هل هي ضد الدين؟",
-        a: "لا. المشروع لا يقوم على العداء للدين أو المؤمنين. هو يدعم حرية الضمير، بما فيها حق الإيمان أو عدم الإيمان أو السؤال أو التفكير بحرية.",
+        a:
+          "لا. المشروع لا يقوم على العداء للدين أو المؤمنين. هو يدعم حرية الضمير، بما فيها حق الإيمان أو عدم الإيمان أو السؤال أو التفكير بحرية.",
       },
       {
         q: "لمن هي؟",
-        a: "بالأساس للسوريين الذين يبحثون عن لغة آمنة للفكر الحر، الأخلاق الإنسانية، الكرامة، والانتماء بلا خوف.",
+        a:
+          "بالأساس للسوريين الذين يبحثون عن لغة آمنة للفكر الحر، الأخلاق الإنسانية، الكرامة، والانتماء بلا خوف.",
       },
       {
         q: "هل المشروع مسجل رسمياً؟",
-        a: "لا. هو حالياً مبادرة مستقلة قيد التطوير. تتم دراسة الجوانب القانونية والأخلاقية والتنظيمية بحذر قبل أي توسع رسمي.",
+        a:
+          "لا. هو حالياً مبادرة مستقلة قيد التطوير. تتم دراسة الجوانب القانونية والأخلاقية والتنظيمية بحذر قبل أي توسع رسمي.",
       },
     ],
     contact: {
@@ -533,9 +625,13 @@ const styles = `
   --shadow: 0 20px 55px rgba(13, 95, 137, 0.12);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -590,39 +686,38 @@ button {
   border: 0;
   background: transparent;
   cursor: pointer;
-  display: inline-grid;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
   text-align: left;
-  line-height: 0.86;
+  line-height: 0.9;
   letter-spacing: -0.04em;
   color: var(--blue);
-  position: relative;
   padding: 0;
 }
 
 [dir="rtl"] .logo {
+  align-items: flex-end;
   text-align: right;
 }
 
 .logo span {
-  font-weight: 900;
-  font-size: clamp(1.65rem, 4.5vw, 2.65rem);
+  font-weight: 950;
+  font-size: clamp(1.55rem, 4vw, 2.25rem);
 }
 
 .logo strong {
   color: var(--green);
-  font-weight: 900;
-  font-size: clamp(1rem, 2.6vw, 1.55rem);
+  font-weight: 950;
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
 }
 
 .logo small {
-  color: var(--orange);
-  font-weight: 900;
-  font-size: 0.75rem;
-  position: absolute;
-  right: -1rem;
-  bottom: 0.1rem;
-  writing-mode: vertical-rl;
-  letter-spacing: -0.02em;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  margin-top: 0.1rem;
 }
 
 .desktopNav {
@@ -650,20 +745,65 @@ button {
 
 .actions {
   display: flex;
-  gap: 0.7rem;
+  gap: 0.65rem;
   align-items: center;
 }
 
+.themeBtn {
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.45);
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 999px;
+  min-width: 4.4rem;
+  height: 2.7rem;
+  padding: 0 1rem;
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+}
+
+.dark .themeBtn {
+  background: rgba(255,255,255,0.04);
+  color: var(--muted);
+}
+
+.themeBtn:hover {
+  background: rgba(0,0,0,0.035);
+  color: var(--text);
+}
+
+.dark .themeBtn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
 .iconBtn {
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 2.9rem;
+  height: 2.9rem;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--blue);
+  background: rgba(255,255,255,0.45);
+  color: var(--muted);
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(13,95,137,0.08);
-  font-size: 1.25rem;
+  box-shadow: none;
+  font-size: 1.05rem;
+  display: inline-grid;
+  place-items: center;
+}
+
+.dark .iconBtn {
+  background: rgba(255,255,255,0.04);
+  color: var(--muted);
+}
+
+.iconBtn:hover {
+  background: rgba(0,0,0,0.035);
+  color: var(--text);
+}
+
+.dark .iconBtn:hover {
+  background: rgba(255,255,255,0.08);
 }
 
 .menuBtn {
@@ -712,11 +852,15 @@ button {
 
 .mobileControls > button {
   border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--blue);
+  background: rgba(255,255,255,0.45);
+  color: var(--muted);
   border-radius: 999px;
   padding: 0.75rem 1rem;
   font-weight: 800;
+}
+
+.dark .mobileControls > button {
+  background: rgba(255,255,255,0.04);
 }
 
 .langToggle,
@@ -796,8 +940,13 @@ button {
   font-weight: 950;
 }
 
-.hero .green { color: var(--green); }
-.hero .orange { color: var(--orange); }
+.hero .green {
+  color: var(--green);
+}
+
+.hero .orange {
+  color: var(--orange);
+}
 
 .heroText {
   max-width: 720px;
@@ -1105,11 +1254,22 @@ button {
   }
 
   .logo span {
-    font-size: 2.15rem;
+    font-size: 1.95rem;
   }
 
   .logo strong {
-    font-size: 1.28rem;
+    font-size: 1.15rem;
+  }
+
+  .logo small {
+    font-size: 0.68rem;
+  }
+
+  .themeBtn {
+    min-width: 4rem;
+    height: 2.65rem;
+    padding: 0 0.85rem;
+    font-size: 0.78rem;
   }
 
   .hero {
@@ -1180,8 +1340,8 @@ button {
   }
 
   .iconBtn {
-    width: 3rem;
-    height: 3rem;
+    width: 2.7rem;
+    height: 2.7rem;
   }
 }
 `;
