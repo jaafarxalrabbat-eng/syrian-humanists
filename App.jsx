@@ -731,7 +731,7 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
   const footerLogoWidth = "w-[300px] sm:w-[360px] md:w-[420px]";
 
   const textStartCorrection = isAr
-    ? "translate-x-[18px] sm:translate-x-[22px] md:translate-x-[26px]"
+    ? "translate-x-[18px] sm:translate-x-[22px] md:translate-x-[32px]"
     : "-translate-x-[18px] sm:-translate-x-[22px] md:-translate-x-[26px]";
 
   return (
