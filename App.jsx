@@ -728,9 +728,7 @@ function FullLogo({ src, alt, isAr }) {
 }
 
 function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
-  const footerLogoWidth = isAr
-    ? "w-[300px] sm:w-[360px] md:w-[420px]"
-    : "w-[300px] sm:w-[360px] md:w-[420px]";
+  const footerLogoWidth = "w-[300px] sm:w-[360px] md:w-[420px]";
 
   return (
     <div
