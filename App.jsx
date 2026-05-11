@@ -692,12 +692,15 @@ function LanguageToggle({ lang, setLang, isDark }) {
   );
 }
 
-function Logo({ src, alt }) {
+function Logo({ src, alt, isAr }) {
   return (
     <img
       src={src}
       alt={alt}
-      className="h-10 w-auto max-w-[210px] object-contain md:h-12 md:max-w-[250px]"
+      className={cx(
+        "block h-auto w-[150px] object-contain md:w-[180px]",
+        isAr ? "object-right" : "object-left"
+      )}
     />
   );
 }
@@ -716,11 +719,16 @@ function FullLogo({ src, alt, isAr }) {
 }
 
 function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
+  const footerLogoWidth = isAr
+    ? "w-[245px] sm:w-[300px]"
+    : "w-[255px] sm:w-[310px]";
+
   return (
     <div
       dir={isAr ? "rtl" : "ltr"}
       className={cx(
-        "w-[270px] max-w-full sm:w-[320px]",
+        footerLogoWidth,
+        "max-w-full",
         isAr ? "text-right" : "text-left"
       )}
     >
@@ -875,8 +883,12 @@ export default function SyrianHumanistsWebsite() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-          <a href="#top" aria-label={copy.logoAlt} className="shrink-0">
-            <Logo src={headerLogo} alt={copy.logoAlt} />
+          <a
+            href="#top"
+            aria-label={copy.logoAlt}
+            className={cx("flex shrink-0", isAr ? "justify-end" : "justify-start")}
+          >
+            <Logo src={headerLogo} alt={copy.logoAlt} isAr={isAr} />
           </a>
 
           <nav className="hidden items-center gap-8 lg:flex">
@@ -1338,9 +1350,7 @@ export default function SyrianHumanistsWebsite() {
           <div
             className={cx(
               "order-1 flex w-full",
-              isAr
-                ? "justify-end md:order-2"
-                : "justify-start md:order-1"
+              isAr ? "justify-end md:order-2" : "justify-start md:order-1"
             )}
           >
             <FooterIdentity
