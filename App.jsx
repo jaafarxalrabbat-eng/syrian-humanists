@@ -730,10 +730,6 @@ function FullLogo({ src, alt, isAr }) {
 function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
   const footerLogoWidth = "w-[300px] sm:w-[360px] md:w-[420px]";
 
-  const textStartCorrection = isAr
-    ? "translate-x-[18px] sm:translate-x-[22px] md:translate-x-[32px]"
-    : "-translate-x-[18px] sm:-translate-x-[22px] md:-translate-x-[26px]";
-
   return (
     <div
       dir={isAr ? "rtl" : "ltr"}
@@ -745,16 +741,24 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
     >
       <FullLogo src={footerLogo} alt={copy.logoAlt} isAr={isAr} />
 
-      <p
+      <div
         className={cx(
-          "mt-4 w-full whitespace-pre-line text-sm leading-7 transition-transform",
-          textStartCorrection,
-          isAr ? "text-right" : "text-left",
-          isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
+          "mt-4 w-full",
+          isAr
+            ? "pl-[42px] sm:pl-[50px] md:pl-[60px]"
+            : "pr-[28px] sm:pr-[36px] md:pr-[44px]"
         )}
       >
-        {copy.footerText}
-      </p>
+        <p
+          className={cx(
+            "whitespace-pre-line text-sm leading-7",
+            isAr ? "text-right" : "text-left",
+            isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
+          )}
+        >
+          {copy.footerText}
+        </p>
+      </div>
     </div>
   );
 }
