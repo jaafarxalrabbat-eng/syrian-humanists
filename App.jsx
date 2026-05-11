@@ -723,6 +723,10 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
     ? "w-[245px] sm:w-[300px]"
     : "w-[255px] sm:w-[310px]";
 
+  const footerTextNudge = isAr
+    ? "pr-[10px] sm:pr-[12px]"
+    : "pl-[8px] sm:pl-[10px]";
+
   return (
     <div
       dir={isAr ? "rtl" : "ltr"}
@@ -737,6 +741,7 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
       <p
         className={cx(
           "mt-4 w-full whitespace-pre-line text-sm leading-7",
+          footerTextNudge,
           isAr ? "text-right" : "text-left",
           isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
         )}
