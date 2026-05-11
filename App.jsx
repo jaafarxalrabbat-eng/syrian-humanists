@@ -735,14 +735,16 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
       dir={isAr ? "rtl" : "ltr"}
       className={cx(
         footerLogoWidth,
-        "max-w-full text-center"
+        "max-w-full flex flex-col",
+        isAr ? "items-end text-right" : "items-start text-left"
       )}
     >
       <FullLogo src={footerLogo} alt={copy.logoAlt} isAr={isAr} />
 
       <p
         className={cx(
-          "mx-auto mt-4 w-full whitespace-pre-line text-center text-sm leading-7",
+          "mt-4 w-full whitespace-pre-line text-sm leading-7",
+          isAr ? "text-right" : "text-left",
           isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
         )}
       >
