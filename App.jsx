@@ -872,20 +872,27 @@ export default function SyrianHumanistsWebsite() {
   const sectionTitleLeading = isAr ? "leading-[1.28]" : "leading-tight";
   const pageBackground = isDark ? "#0B1418" : "#F8FAF7";
 
-  useEffect(() => {
-    const root = document.getElementById("root");
+useEffect(() => {
+  const root = document.getElementById("root");
 
-    document.documentElement.style.backgroundColor = pageBackground;
-    document.body.style.backgroundColor = pageBackground;
-    document.documentElement.style.overscrollBehavior = "none";
-    document.body.style.overscrollBehavior = "none";
-    document.body.style.margin = "0";
+  document.documentElement.style.backgroundColor = pageBackground;
+  document.body.style.backgroundColor = pageBackground;
+  document.documentElement.style.background = pageBackground;
+  document.body.style.background = pageBackground;
 
-    if (root) {
-      root.style.backgroundColor = pageBackground;
-      root.style.minHeight = "100vh";
-    }
-  }, [pageBackground]);
+  document.documentElement.style.overscrollBehavior = "auto";
+  document.body.style.overscrollBehavior = "auto";
+
+  document.documentElement.style.minHeight = "100%";
+  document.body.style.minHeight = "100%";
+  document.body.style.margin = "0";
+
+  if (root) {
+    root.style.backgroundColor = pageBackground;
+    root.style.background = pageBackground;
+    root.style.minHeight = "100vh";
+  }
+}, [pageBackground]);
 
   return (
     <div
