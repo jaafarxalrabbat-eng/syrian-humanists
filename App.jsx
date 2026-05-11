@@ -495,6 +495,15 @@ function AmbientAura({ isAr = false, isDark = false }) {
       />
 
       <div
+        className="absolute inset-x-0 bottom-[-150px] h-[380px] blur-3xl"
+        style={{
+          background: isDark
+            ? "radial-gradient(ellipse at bottom left, rgba(241,145,46,0.13) 0%, rgba(241,145,46,0.055) 38%, rgba(241,145,46,0) 72%), radial-gradient(ellipse at bottom right, rgba(37,167,122,0.08) 0%, rgba(37,167,122,0.035) 44%, rgba(37,167,122,0) 78%)"
+            : "radial-gradient(ellipse at bottom left, rgba(241,145,46,0.16) 0%, rgba(241,145,46,0.07) 38%, rgba(241,145,46,0) 72%), radial-gradient(ellipse at bottom right, rgba(37,167,122,0.10) 0%, rgba(37,167,122,0.045) 44%, rgba(37,167,122,0) 78%)",
+        }}
+      />
+
+      <div
         className={`absolute top-[12%] h-[360px] w-[360px] rounded-full blur-3xl ${
           isAr ? "left-[18%]" : "right-[10%]"
         }`}
@@ -723,10 +732,6 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
     ? "w-[245px] sm:w-[300px]"
     : "w-[255px] sm:w-[310px]";
 
-  const footerTextNudge = isAr
-    ? "pr-[10px] sm:pr-[12px]"
-    : "pl-[8px] sm:pl-[10px]";
-
   return (
     <div
       dir={isAr ? "rtl" : "ltr"}
@@ -741,7 +746,6 @@ function FooterIdentity({ isAr, footerLogo, copy, isDark }) {
       <p
         className={cx(
           "mt-4 w-full whitespace-pre-line text-sm leading-7",
-          footerTextNudge,
           isAr ? "text-right" : "text-left",
           isDark ? "text-[#EAF2F5]/60" : "text-[#14232B]/65"
         )}
@@ -757,7 +761,9 @@ function HeroLogoVisual({ copy, isDark, isAr }) {
     <div
       className={cx(
         "relative mx-auto mt-10 flex h-[360px] w-full max-w-[500px] items-center justify-center md:h-[470px] lg:mt-0",
-        isAr ? "lg:-translate-x-10" : "lg:translate-x-10"
+        isAr
+          ? "lg:-translate-x-16 xl:-translate-x-20"
+          : "lg:translate-x-16 xl:translate-x-20"
       )}
     >
       <div className="absolute inset-4 rounded-full bg-gradient-to-br from-[#7CCBAE]/25 via-white to-[#F1912E]/10 blur-2xl" />
@@ -866,6 +872,22 @@ export default function SyrianHumanistsWebsite() {
   const footerLogo = isAr ? logoFullAr : logoFull;
   const align = isAr ? "text-right" : "text-left";
   const sectionTitleLeading = isAr ? "leading-[1.28]" : "leading-tight";
+  const pageBackground = isDark ? "#0B1418" : "#F8FAF7";
+
+  useEffect(() => {
+    const root = document.getElementById("root");
+
+    document.documentElement.style.backgroundColor = pageBackground;
+    document.body.style.backgroundColor = pageBackground;
+    document.documentElement.style.overscrollBehavior = "none";
+    document.body.style.overscrollBehavior = "none";
+    document.body.style.margin = "0";
+
+    if (root) {
+      root.style.backgroundColor = pageBackground;
+      root.style.minHeight = "100vh";
+    }
+  }, [pageBackground]);
 
   return (
     <div
@@ -873,6 +895,7 @@ export default function SyrianHumanistsWebsite() {
       lang={lang}
       style={{
         fontFamily: isAr ? '"IBM Plex Sans Arabic", sans-serif' : '"Manrope", sans-serif',
+        backgroundColor: pageBackground,
       }}
       className={cx(
         "min-h-screen scroll-smooth transition-colors duration-500",
@@ -891,7 +914,12 @@ export default function SyrianHumanistsWebsite() {
           <a
             href="#top"
             aria-label={copy.logoAlt}
-            className={cx("flex shrink-0", isAr ? "justify-end" : "justify-start")}
+            className={cx(
+              "flex shrink-0 transition-transform duration-300",
+              isAr
+                ? "translate-x-3 justify-end md:translate-x-4"
+                : "-translate-x-3 justify-start md:-translate-x-4"
+            )}
           >
             <Logo src={headerLogo} alt={copy.logoAlt} isAr={isAr} />
           </a>
